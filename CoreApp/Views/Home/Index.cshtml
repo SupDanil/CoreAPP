@@ -3,6 +3,22 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>TEXT FROM VIEW</h2>
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Наш ресурс не носит цели оскорбить кого-то,<br> и был создан в развлекательных целях.</h3>
+        </div>
+    </header>
+</div>
+
+<h1>ВВЕДИТЕ СВОЕ ИМЯ</h1>
+@using (Html.BeginForm()) 
+{
+        <p class="lead">
+            <input type="text" name="Name"/><br/><br/>
+            <input type="submit" class="btn btn-lg btn-secondary" value="НАЧАТЬ">
+        </p>
+}
 
 
