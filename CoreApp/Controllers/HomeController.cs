@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CoreApp.Models;
 using CoreApp.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreApp.Controllers
 {
     public class HomeController : Controller
     {
-         //var rnd = new Random(DateTime.Now.Millisecond);
+        public static string UserName;
+       
         private readonly NickNameContext db;
 
         private readonly ILogger<HomeController> _logger;
@@ -25,16 +27,28 @@ namespace CoreApp.Controllers
 
         public IActionResult Index()
         {
+            
             return View();
+            
         }
-
         [HttpPost]
         public IActionResult Index(string Name)
         {
-            
-            return View();
+            HomeController.UserName = Name;
+            return RedirectToAction("Show");
         }
 
+        public async Task<IActionResult> Show()
+        {
+            Random random = new Random();
+            int rnd = random.Next(0, 51);
+            NickName NN = await db.NickNames.FirstOrDefaultAsync(p => p.Id == rnd);
+            ViewData["Nick"] =  NN.Nick;
+            ViewData["Name"] = HomeController.UserName;
+            return View();
+            
+        }
 
+        
     }
 }

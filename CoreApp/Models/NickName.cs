@@ -11,5 +11,7 @@ namespace CoreApp.Models
         [Key]
         public int Id { get; set; }
         public string Nick { get; set; }
+
+        
     }
 }
