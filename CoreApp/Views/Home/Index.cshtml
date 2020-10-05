@@ -1,4 +1,5 @@
-﻿
+﻿@using CoreApp.Models
+@model NickName
 @{
     ViewData["Title"] = "AppSERATOR";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,14 +14,29 @@
 </div>
 
 <h1>ВВЕДИТЕ СВОЕ ИМЯ</h1>
+
 @using (Html.BeginForm())
 {
     <p class="lead">
-        <input type="text" name="Name" /><br /><br />
-        <input type="submit" class="btn btn-lg btn-secondary" value="НАЧАТЬ">
+    <p style="color:red" text-transform: uppercase> @ViewData["NameError"]</p>
+    <input type="text" name="Name" />
+    <br />
+    <br />
+    <input type="submit" class="btn btn-lg btn-secondary" value="НАЧАТЬ">
     </p>
-    <label>Я не буду обижаться на разработчика</label>@Html.CheckBox("Check", false); 
-   <h1>@Html.ValidationMessage("Fuck","Поставьте галочку")</h1>
+
+    <label>Я не буду обижаться на разработчика</label>
+    <h3>@Html.CheckBox("Check", false)</h3><p style="color:red" text-transform: uppercase> @ViewData["CheckError"]</p>
+    <Footer class="masthead mb-auto">
+        <div class="inner">
+        <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href="Home/About">ABOUT</a>
+
+            </nav>
+        </div>
+    </Footer>
+
+
 
 
 }

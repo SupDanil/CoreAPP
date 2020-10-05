@@ -32,19 +32,19 @@ namespace CoreApp.Controllers
         [HttpPost]
         public IActionResult Index(string Name, bool Check)
         {
-            if (Check==true)
+            if (Check==true && Name != null)
             {
                 HomeController.UserName = Name;
                 return RedirectToAction("Show");
             }
             else
             {
-                //ModelState.AddModelError("Fuck","Поставьте галочку");
-                return View();
+                ViewData["NameError"] = "Введите свое Имя";
+                ViewData["CheckError"] = "Поставьте галочку что бы продолжить";
+
+                return View("Index");
             }
-               
-            
-               
+      
         }
 
         public async Task<IActionResult> Show()
@@ -55,9 +55,13 @@ namespace CoreApp.Controllers
             ViewData["Nick"] =  NN.Nick;
             ViewData["Name"] = HomeController.UserName;
             return View();
-            
+        }
+        public IActionResult About()
+        {
+
+            return View();
         }
 
-        
+
     }
 }
