@@ -27,15 +27,24 @@ namespace CoreApp.Controllers
 
         public IActionResult Index()
         {
-            
-            return View();
-            
+                return View();
         }
         [HttpPost]
-        public IActionResult Index(string Name)
+        public IActionResult Index(string Name, bool Check)
         {
-            HomeController.UserName = Name;
-            return RedirectToAction("Show");
+            if (Check==true)
+            {
+                HomeController.UserName = Name;
+                return RedirectToAction("Show");
+            }
+            else
+            {
+                //ModelState.AddModelError("Fuck","Поставьте галочку");
+                return View();
+            }
+               
+            
+               
         }
 
         public async Task<IActionResult> Show()
